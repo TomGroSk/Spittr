@@ -10,6 +10,6 @@ public class MainController {
 
     @GetMapping
     public String smth(){
-        return "ala";
+        return "index";
     }
 }

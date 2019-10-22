@@ -5,20 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.gromadzki.spittr.repository.SpittleRepository;
+import pl.gromadzki.spittr.service.SpittlesService;
 
 @Controller
 @RequestMapping("/spittle")
 public class SpittleController {
-    private SpittleRepository spittleRepository;
+    private SpittlesService spittlesService;
 
     @Autowired
-    public SpittleController(SpittleRepository spittleRepository) {
-        this.spittleRepository = spittleRepository;
+    public SpittleController(SpittlesService spittlesService) {
+        this.spittlesService = spittlesService;
 }
     @GetMapping
     public String spittles(Model model){
-        model.addAllAttributes(spittleRepository.findSpittlesById(3));
+        //TODO DO SERVICE TO GET LIST OF LAST SPITTLES
+        model.addAttribute("spittles", spittlesService.getLastSpittles(5));
         return "spittle";
     }
 }

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Spittles</title>
 </head>
 <body>
-asdgjhkerucmcm,cvxmc,cmvxx,cvxcvcxvccvxvxcvxcv
+    <h1 style="text-align: center">Ostatnie spittle</h1>
+    <div style="text-align: center" th:each="spittle: ${spittles}">
+        <td th:text="${spittle.message}">MESSAGE</td>
+        <td th:text="${spittle.time}">TIME</td>
+    </div>
 </body>
 </html>
