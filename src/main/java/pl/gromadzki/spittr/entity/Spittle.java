@@ -1,7 +1,6 @@
 package pl.gromadzki.spittr.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "SPITTLE")
@@ -15,26 +14,19 @@ public class Spittle {
     private final String message;
 
     @Column(name = "TIME")
-    private final Date time;
+    private final String time;
 
-    @Column(name = "LATITUDE")
-    private Double latitude;
 
-    @Column(name = "LONGITUDE")
-    private Double longitude;
-
-    public Spittle(String message, Date time) {
+    public Spittle(String message, String time) {
         this(message, time, null, null);
     }
-    public Spittle(String message, Date time, Double longitude, Double latitude) {
+    public Spittle(String message, String time, Double longitude, Double latitude) {
         this.id = null;
         this.message = message;
         this.time = time;
-        this.longitude = longitude;
-        this.latitude = latitude;
     }
     public Spittle(){
-        this("",null,null,null);
+        this("",null);
     }
 
     public Integer getId() {
@@ -43,14 +35,8 @@ public class Spittle {
     public String getMessage() {
         return message;
     }
-    public Date getTime() {
+    public String getTime() {
         return time;
-    }
-    public Double getLongitude() {
-        return longitude;
-    }
-    public Double getLatitude() {
-        return latitude;
     }
     @Override
     public String toString() {
@@ -58,8 +44,6 @@ public class Spittle {
                 "id=" + id +
                 ", message='" + message + '\'' +
                 ", time=" + time +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
                 '}';
     }
 }

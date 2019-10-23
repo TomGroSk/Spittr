@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Spittles</title>
+    <link href="../static/css/spittle.css" th:href="@{/css/spittle.css}" rel="stylesheet" />
 </head>
 <body>
-    <h1 style="text-align: center">Ostatnie spittle</h1>
-    <div style="text-align: center" th:each="spittle: ${spittles}">
-        <td class="message" th:text="${spittle.message}">MESSAGE</td>
-        <td class="time" th:text="${spittle.time}">TIME</td>
+    <h1 class="mainText">Last spittles</h1>
+
+    <div th:each="spittle: ${spittles}">
+        <div class="spittleMessage" >
+            <h2 th:text="${spittle.message}">MESSAGE</h2>
+        </div>
+        <div class="spittleTime">
+            <span th:text="${spittle.time}">TIME</span>
+        </div>
     </div>
 </body>
 </html>

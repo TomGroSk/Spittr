@@ -1,0 +1,23 @@
+body
+{
+    background: wheat;
+}
+div.spittleMessage
+{
+    text-align: center;
+    font-size: 20px;
+    color: brown;
+}
+div.spittleTime
+{
+    text-align: center;
+    color: cornflowerblue;
+}
+
+.mainText
+{
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    color: chartreuse;
+}
