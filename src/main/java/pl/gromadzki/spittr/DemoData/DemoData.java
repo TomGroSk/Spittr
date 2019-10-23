@@ -11,19 +11,15 @@ import java.util.Date;
 
 @Component
 public class DemoData {
-
     private final SpittleRepository repository;
-
     public DemoData(SpittleRepository repository) {
         this.repository = repository;
     }
-
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
-        repository.save(new Spittle("Testowa wiadomosc", new Date(),2.1 ,2.4));
-        repository.save(new Spittle("Testowa wiadomosc 2", new Date(),2.1 ,2.4));
-        repository.save(new Spittle("Testowa wiadomosc 3", new Date(),2.1 ,2.4));
-        repository.findAll().forEach(System.out::println);
-        System.out.println("asdasda");
+        repository.save(new Spittle("Testowa wiadomosc", new Date()));
+        repository.save(new Spittle("Testowa wiadomosc 2", new Date()));
+        repository.save(new Spittle("Testowa wiadomosc 3", new Date()));
+        //repository.findAll().forEach(System.out::println);
     }
 }

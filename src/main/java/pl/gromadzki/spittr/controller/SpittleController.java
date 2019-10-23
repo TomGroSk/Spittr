@@ -18,7 +18,6 @@ public class SpittleController {
 }
     @GetMapping
     public String spittles(Model model){
-        //TODO DO SERVICE TO GET LIST OF LAST SPITTLES
         model.addAttribute("spittles", spittlesService.getLastSpittles(5));
         return "spittle";
     }

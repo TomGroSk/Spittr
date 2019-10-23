@@ -36,6 +36,7 @@ public class Spittle {
     public Spittle(){
         this("",null,null,null);
     }
+
     public Integer getId() {
         return id;
     }
@@ -51,7 +52,6 @@ public class Spittle {
     public Double getLatitude() {
         return latitude;
     }
-
     @Override
     public String toString() {
         return "Spittle{" +

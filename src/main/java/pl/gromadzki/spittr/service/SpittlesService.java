@@ -19,16 +19,12 @@ public class SpittlesService {
 
     public List<Spittle> getLastSpittles(int counter){
         List<Spittle> spittleList = new ArrayList<>();
-        List<Long> longList = new ArrayList<>();
-        longList.add(Long.MAX_VALUE);
-
-
-
-
-
-
-
-
+        int lastId = Math.toIntExact(spittleRepository.count());
+        while(counter>=0 && spittleRepository.existsById(lastId)){
+            spittleList.add(spittleRepository.findById(lastId));
+            lastId--;
+            counter--;
+        }
         return spittleList;
     }
 }

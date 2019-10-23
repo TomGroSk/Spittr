@@ -7,8 +7,8 @@
 <body>
     <h1 style="text-align: center">Ostatnie spittle</h1>
     <div style="text-align: center" th:each="spittle: ${spittles}">
-        <td th:text="${spittle.message}">MESSAGE</td>
-        <td th:text="${spittle.time}">TIME</td>
+        <td class="message" th:text="${spittle.message}">MESSAGE</td>
+        <td class="time" th:text="${spittle.time}">TIME</td>
     </div>
 </body>
 </html>
