@@ -1,6 +1,8 @@
 package pl.gromadzki.spittr.entity;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name = "SPITTLE")
@@ -18,15 +20,15 @@ public class Spittle {
 
 
     public Spittle(String message, String time) {
-        this(message, time, null, null);
-    }
-    public Spittle(String message, String time, Double longitude, Double latitude) {
         this.id = null;
         this.message = message;
         this.time = time;
     }
+    public Spittle(String message){
+        this(message, new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()));
+    }
     public Spittle(){
-        this("",null);
+        this("", new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()));
     }
 
     public Integer getId() {
