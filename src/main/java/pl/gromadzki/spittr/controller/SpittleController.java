@@ -11,6 +11,8 @@ import pl.gromadzki.spittr.entity.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 import pl.gromadzki.spittr.service.SpittlesService;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/spittle")
 public class SpittleController {
@@ -24,9 +26,11 @@ public class SpittleController {
 }
     @GetMapping
     public String spittles(Model model){
-        model.addAttribute("spittles", spittlesService.getLastSpittles(5));
+        model.addAttribute("spittle", new Spittle());
+        model.addAttribute("spittles", spittlesService.getLastSpittles(3));
         return "spittle";
     }
+
     @PostMapping
     public String messageSpittle(@ModelAttribute("spittle")Spittle spittle){
         System.out.println(spittle);

@@ -7,8 +7,12 @@
 </head>
 <body>
     <h1>Write your spittle!</h1>
-    <form method="post" modelAttribute="spittle">
-        Message: <input type="text" name="message" />
+    <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post">
+        Message:
+        <br>
+        <textarea rows="4" cols="50" name="comment" form="usrform" th:field="*{message}"></textarea>
+        <br>
+        
         <input type="submit" value="Send" />
     </form>
 

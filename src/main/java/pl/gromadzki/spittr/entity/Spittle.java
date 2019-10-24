@@ -10,13 +10,13 @@ public class Spittle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "SPITTLE_ID")
-    private final Integer id;
+    private Integer id;
 
     @Column(name = "MESSAGE")
-    private final String message;
+    private String message;
 
     @Column(name = "TIME")
-    private final String time;
+    private String time;
 
 
     public Spittle(String message, String time) {
@@ -40,6 +40,18 @@ public class Spittle {
     public String getTime() {
         return time;
     }
+    public void setMessage(String message){
+        this.message = message;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
         return "Spittle{" +
