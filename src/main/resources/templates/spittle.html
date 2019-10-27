@@ -5,25 +5,35 @@
     <title>Spittles</title>
     <link href="../static/css/spittle.css" th:href="@{/css/spittle.css}" rel="stylesheet" />
 </head>
-<body>
-    <h1>Write your spittle!</h1>
-    <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post">
-        Message:
-        <br>
-        <textarea rows="4" cols="50" name="comment" form="usrform" th:field="*{message}"></textarea>
-        <br>
-        
-        <input type="submit" value="Send" />
-    </form>
+<div class="animation-background">
+    <div class="dialog">
+        <h1 class="write-spittle" style="font-family:'Titan One',cursive;">Write your spittle!</h1>
+        <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post">
+            <br>
+            <textarea minlength="1" maxlength="255" name="comment" form="usrform" wrap="soft"
+                      th:field="*{message}" required placeholder="Write your message!"></textarea>
+            <br>
+            <input type="submit" value="Send" />
+        </form>
 
-    <h2 class="mainText">Last spittles:</h2>
-    <div th:each="spittle: ${spittles}">
-        <div class="spittleMessage" >
-            <h2 th:text="${spittle.message}">MESSAGE</h2>
-        </div>
-        <div class="spittleTime">
-            <span th:text="${spittle.time}">TIME</span>
+        <h1 style="font-family:'Titan One',cursive;">Last spittles:</h1>
+        <div class="display-container" th:each="spittle: ${spittles}">
+            <div class="topleft">USER</div>
+            <div class="topright"><span th:text="${spittle.time}">TIME</span></div>
+            <div class="middle"><h3 th:text="${spittle.message}">MESSAGE</h3></div>
         </div>
     </div>
+    <ul class="box-area">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+
+
+
 </body>
 </html>

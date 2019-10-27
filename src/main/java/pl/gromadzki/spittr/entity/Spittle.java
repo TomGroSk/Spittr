@@ -18,7 +18,6 @@ public class Spittle {
     @Column(name = "TIME")
     private String time;
 
-
     public Spittle(String message, String time) {
         this.id = null;
         this.message = message;
@@ -43,11 +42,9 @@ public class Spittle {
     public void setMessage(String message){
         this.message = message;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public void setTime(String time) {
         this.time = time;
     }

@@ -11,7 +11,6 @@ import pl.gromadzki.spittr.entity.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 import pl.gromadzki.spittr.service.SpittlesService;
 
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/spittle")
