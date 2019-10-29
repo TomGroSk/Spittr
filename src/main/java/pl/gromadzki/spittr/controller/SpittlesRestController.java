@@ -9,6 +9,7 @@ import pl.gromadzki.spittr.repository.SpittleRepository;
 @RestController
 @RequestMapping(value = "/api")
 public class SpittlesRestController {
+
     private SpittleRepository spittleRepository;
     public SpittlesRestController(SpittleRepository spittleRepository) {
         this.spittleRepository = spittleRepository;

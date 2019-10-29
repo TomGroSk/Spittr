@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "SPITTLE")
+@Table(name = "SPITTLES")
 public class Spittle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +17,15 @@ public class Spittle {
 
     @Column(name = "TIME")
     private String time;
+
+    @Override
+    public String toString() {
+        return "Spittle{" +
+                "id=" + id +
+                ", message='" + message + '\'' +
+                ", time=" + time +
+                '}';
+    }
 
     public Spittle(String message, String time) {
         this.id = null;
@@ -47,14 +56,5 @@ public class Spittle {
     }
     public void setTime(String time) {
         this.time = time;
-    }
-
-    @Override
-    public String toString() {
-        return "Spittle{" +
-                "id=" + id +
-                ", message='" + message + '\'' +
-                ", time=" + time +
-                '}';
     }
 }

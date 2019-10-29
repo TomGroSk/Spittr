@@ -12,7 +12,6 @@ import java.util.List;
 public class SpittlesService {
     private SpittleRepository spittleRepository;
 
-    @Autowired
     public SpittlesService(SpittleRepository spittleRepository) {
         this.spittleRepository = spittleRepository;
     }

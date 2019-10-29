@@ -30,9 +30,9 @@ public class SpittleController {
         return "spittle";
     }
 
+
     @PostMapping
     public String messageSpittle(@ModelAttribute("spittle")Spittle spittle){
-        System.out.println(spittle);
         spittleRepository.save(spittle);
         return "redirect:/spittle";
     }
