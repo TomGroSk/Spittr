@@ -1,8 +1,7 @@
 package pl.gromadzki.spittr.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.gromadzki.spittr.entity.Spittle;
+import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 
 import java.util.ArrayList;

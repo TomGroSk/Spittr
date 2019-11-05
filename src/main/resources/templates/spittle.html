@@ -18,7 +18,7 @@
 
         <h1 style="font-family:'Titan One',cursive;">Last spittles:</h1>
         <div class="display-container" th:each="spittle: ${spittles}">
-            <div class="topleft">USER</div>
+            <div class="topleft"><span th:text="${spittle.username}">USER</span></div>
             <div class="topright"><span th:text="${spittle.time}">TIME</span></div>
             <div class="middle"><h3 th:text="${spittle.message}">MESSAGE</h3></div>
         </div>

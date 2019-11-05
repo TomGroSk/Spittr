@@ -1,4 +1,4 @@
-package pl.gromadzki.spittr.entity;
+package pl.gromadzki.spittr.model;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
@@ -18,6 +18,9 @@ public class Spittle {
     @Column(name = "TIME")
     private String time;
 
+    @Column(name = "USER_NAME")
+    private String username;
+
     @Override
     public String toString() {
         return "Spittle{" +
@@ -27,16 +30,17 @@ public class Spittle {
                 '}';
     }
 
-    public Spittle(String message, String time) {
+    public Spittle(String message, String time, String username) {
+        this.username = username;
         this.id = null;
         this.message = message;
         this.time = time;
     }
     public Spittle(String message){
-        this(message, new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()));
+        this(message, new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()), "username");
     }
     public Spittle(){
-        this("", new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()));
+        this("", new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()), "username");
     }
 
     public Integer getId() {
@@ -56,5 +60,11 @@ public class Spittle {
     }
     public void setTime(String time) {
         this.time = time;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

@@ -1,11 +1,10 @@
 package pl.gromadzki.spittr.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.gromadzki.spittr.entity.Login;
-import pl.gromadzki.spittr.entity.User;
+import pl.gromadzki.spittr.model.User;
 
 @Repository
-public interface UserRepository extends CrudRepository <User, Long> {
-    User findByUsernameAndPassword(String username, String password);
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByUsername(String username);
 }

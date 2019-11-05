@@ -33,7 +33,7 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/spittle").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/api").hasRole("ADMIN")
+                .antMatchers("/spittle/api").hasRole("ADMIN")
                 .and()
                 .formLogin().permitAll()
                 .and()

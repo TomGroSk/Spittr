@@ -1,13 +1,11 @@
 package pl.gromadzki.spittr.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import pl.gromadzki.spittr.entity.Spittle;
+import org.springframework.web.bind.annotation.*;
+import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 import pl.gromadzki.spittr.service.SpittlesService;
 
@@ -32,8 +30,15 @@ public class SpittleController {
 
 
     @PostMapping
-    public String messageSpittle(@ModelAttribute("spittle")Spittle spittle){
+    public String messageSpittle(@ModelAttribute("spittle")Spittle spittle, Authentication authentication){
+        spittle.setUsername(authentication.getName());
         spittleRepository.save(spittle);
         return "redirect:/spittle";
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/api")
+    public Iterable<Spittle> getAllSpittles(){
+        return spittleRepository.findAll();
     }
 }
