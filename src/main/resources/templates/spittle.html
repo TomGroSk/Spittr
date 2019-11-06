@@ -1,13 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Spittles</title>
     <link href="../static/css/spittle.css" th:href="@{/css/spittle.css}" rel="stylesheet" />
 </head>
+<body>
+<div class="header">
+
+    <div class="header-left">
+        <a class="header-home" href="/">HOME</a>
+    </div>
+    <div class="header-right">
+        <a sec:authorize="hasRole('ADMIN')" href="/spittle/api">SPITTLES</a>
+        <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
+    </div>
+</div>
 <div class="animation-background">
     <div class="dialog">
-        <h1 class="write-spittle" style="font-family:'Titan One',cursive;">Write your spittle!</h1>
+        <h1 class="write-spittle">Write your spittle!</h1>
         <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post">
             <br>
             <textarea minlength="1" maxlength="255" name="comment" form="usrform" wrap="soft"
