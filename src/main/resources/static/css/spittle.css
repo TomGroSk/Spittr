@@ -13,7 +13,7 @@ body{
 
 .header {
     padding: 10px 30px;
-    background: linear-gradient(to bottom, black, grey);
+    background: linear-gradient(to bottom, darkgray, grey);
     word-spacing: 30px;
     font-weight: 900;
     position: relative;

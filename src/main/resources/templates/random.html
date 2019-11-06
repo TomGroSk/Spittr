@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Spittles - random post</title>
+    <link href="../static/css/random.css" th:href="@{/css/random.css}" rel="stylesheet" />
+</head>
+<body>
+    <div class="background">
+        <div class="header">
+            <div class="header-left">
+                <a class="header-home" href="/">HOME</a>
+                <a sec:authorize="isAuthenticated()" href="/spittle">SPITTLE</a>
+            </div>
+            <div class="header-right">
+                <a sec:authorize="hasRole('ADMIN')" href="/spittle/api">SPITTLES</a>
+                <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
+            </div>
+        </div>
+        <div class="display-container">
+            <div class="topleft"><span th:text="${randomSpittle.username}">USER</span></div>
+            <div class="topright"><span th:text="${randomSpittle.time}">TIME</span></div>
+            <div class="middle"><h3 th:text="${randomSpittle.message}">MESSAGE</h3></div>
+        </div>
+    </div>
+</body>
+</html>

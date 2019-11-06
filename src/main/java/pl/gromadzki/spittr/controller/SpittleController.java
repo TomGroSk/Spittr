@@ -28,7 +28,6 @@ public class SpittleController {
         return "spittle";
     }
 
-
     @PostMapping
     public String messageSpittle(@ModelAttribute("spittle")Spittle spittle, Authentication authentication){
         spittle.setUsername(authentication.getName());
@@ -40,5 +39,11 @@ public class SpittleController {
     @GetMapping(value = "/api")
     public Iterable<Spittle> getAllSpittles(){
         return spittleRepository.findAll();
+    }
+
+    @GetMapping(value = "/random")
+    public String getRandomSpittle(Model model){
+        model.addAttribute("randomSpittle", spittlesService.getRandomSpittle());
+        return "random";
     }
 }

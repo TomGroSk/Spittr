@@ -15,6 +15,7 @@
     </div>
     <div class="header-right">
         <a sec:authorize="hasRole('ADMIN')" href="/spittle/api">SPITTLES</a>
+        <a sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
         <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
     </div>
 </div>

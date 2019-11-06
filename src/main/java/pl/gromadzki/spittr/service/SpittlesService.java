@@ -25,4 +25,9 @@ public class SpittlesService {
         }
         return spittleList;
     }
+
+    public Spittle getRandomSpittle(){
+        Integer randomId = Math.toIntExact((long) ((Math.random() * spittleRepository.count()) + 1));
+        return spittleRepository.findById(randomId).orElse(null);
+    }
 }
