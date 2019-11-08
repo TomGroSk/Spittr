@@ -14,7 +14,7 @@
         <a class="header-home" href="/">HOME</a>
     </div>
     <div class="header-right">
-        <a sec:authorize="hasRole('ADMIN')" href="/spittle/api">SPITTLES</a>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/spittle/api">SPITTLES</a>
         <a sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
         <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
     </div>
@@ -25,7 +25,7 @@
         <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post">
             <br>
             <textarea minlength="1" maxlength="255" name="comment" form="usrform" wrap="soft"
-                      th:field="*{message}" required placeholder="Write your message!"></textarea>
+                      th:field="*{message}" id="message" required placeholder="Write your message!"></textarea>
             <br>
             <input type="submit" value="Send" />
         </form>
@@ -49,9 +49,6 @@
         <li></li>
     </ul>
 </div>
-
-
-
 
 </body>
 </html>

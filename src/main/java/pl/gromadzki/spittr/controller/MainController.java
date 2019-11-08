@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class MainController {
-    //TODO main page
     @GetMapping
-    public String smth(){
+    public String getIndex(){
         return "index";
     }
-
-
 }
