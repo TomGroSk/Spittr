@@ -12,14 +12,15 @@ import pl.gromadzki.spittr.repository.SpittleRepository;
 import pl.gromadzki.spittr.repository.UserRepository;
 
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
 
 
 @Component
 public class DemoData {
+
     private final SpittleRepository spittleRepository;
     private final UserRepository userRepository;
+
     public DemoData(SpittleRepository spittleRepository, UserRepository userRepository) {
         this.spittleRepository = spittleRepository;
         this.userRepository = userRepository;

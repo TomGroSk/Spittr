@@ -8,10 +8,10 @@ import pl.gromadzki.spittr.repository.UserRepository;
 import java.util.List;
 
 @RestController
-public class TestController {
+public class UsersRestController {
     private final UserRepository userRepository;
 
-    public TestController(UserRepository userRepository) {
+    public UsersRestController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

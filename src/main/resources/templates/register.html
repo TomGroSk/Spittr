@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Spittles - registration</title>
+    <link href="../static/css/register.css" th:href="@{/css/register.css}" rel="stylesheet" />
+</head>
+<body>
+    <div class="background">
+        <div class="header">
+            <div class="header-left">
+                <a class="header-home" href="/">HOME</a>
+            </div>
+            <div class="header-right">
+                <a sec:authorize="hasAuthority('ADMIN')" href="/users">USERS</a>
+                <a sec:authorize="hasAuthority('ADMIN')" href="/spittle/api">SPITTLES</a>
+                <a sec:authorize="!isAuthenticated()" href="/login">LOGIN</a>
+            </div>
+        </div>
+        <form action="#" th:action="@{/register}" th:object="${newUser}" method="post" class="form-signin" role="form">
+            <a class="form-signin-heading">Registration</a>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" th:field="*{username}" placeholder="Login"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="password" th:field="*{password}" placeholder="Password"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -14,7 +14,10 @@
         <a sec:authorize="isAuthenticated()" href="/spittle">SPITTLE</a>
     </div>
     <div class="header-right">
+        <a sec:authorize="hasAuthority('ADMIN')" href="/users">USERS</a>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/spittle/api">SPITTLES</a>
         <a sec:authorize="!isAuthenticated()" href="/login">LOGIN</a>
+        <a sec:authorize="!isAuthenticated()" href="/register">REGISTER</a>
         <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
     </div>
 </div>

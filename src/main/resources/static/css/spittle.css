@@ -79,7 +79,7 @@ textarea {
     font-family:'Titan One',cursive;
 }
 .write-spittle:hover{
-       color: crimson;
+    color: crimson;
     transition: all 0.5s ease-in;
 }
 input[type="submit"] {

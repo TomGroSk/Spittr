@@ -27,6 +27,9 @@ body{
 .header-left{
     float: left;
 }
+.header-right{
+    float: right;
+}
 .header a {
     float: left;
     color: white;
@@ -58,37 +61,18 @@ body{
         float: none;
     }
 }
-
-.display-container{
-    margin: 150px auto;
-    border-spacing: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    width: 40%;
-    word-break: break-word;
-    font-weight: bold;
-    font-size: 15px;
-    box-sizing: border-box;
-    border: 1px solid white;
-    border-radius: 30px;
+.form-signin-heading{
     color: white;
-    background-color: black;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(10px, auto);
+    padding: 100px;
+    font-weight: 900;
+    text-decoration-style: wavy;
+    font-style: italic;
+    font-size: 50px;
 }
-
-.topleft{
-    grid-column: 1 / 2;
-    grid-row: 1;
+.form-signin{
+    padding: 100px
 }
-.topright{
-    grid-column: 3 / 4;
-    grid-row: 1;
-}
-.middle{
-    grid-column: 1 / 4;
-    grid-row: 2;
+.form-group{
+    margin: 20px;
+        size: 20px;
 }
