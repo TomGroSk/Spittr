@@ -27,6 +27,9 @@ body{
 .header-left{
     float: left;
 }
+.header-right{
+    float: right;
+}
 .header a {
     float: left;
     color: white;
