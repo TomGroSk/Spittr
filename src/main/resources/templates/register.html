@@ -19,16 +19,37 @@
                 <a sec:authorize="!isAuthenticated()" href="/login">LOGIN</a>
             </div>
         </div>
+
         <form action="#" th:action="@{/register}" th:object="${newUser}" method="post" class="form-signin" role="form">
             <a class="form-signin-heading">Registration</a>
+<!--            <div>-->
+<!--                <a style="color: white" th:if="${#fields.hasErrors('username')}">Name must be filled!</a>-->
+<!--                <a style="color: white" th:if="${#fields.hasErrors('password')}">Password must be filled!</a>-->
+<!--                <a style="color: white" th:if="${#fields.hasErrors('rePassword')}">Incorrect password confirm!</a>-->
+<!--            </div>-->
+
             <div class="form-group">
                 <div class="">
                     <input type="text" th:field="*{username}" placeholder="Login"/>
+                    <div>
+                        <a style="color: white" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></a>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
                     <input type="password" th:field="*{password}" placeholder="Password"/>
+                    <div>
+                        <a style="color: white" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="password" th:field="*{rePassword}" placeholder="Confirm password"/>
+                    <div>
+                        <a style="color: white" th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}"></a>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -37,6 +58,7 @@
                 </div>
             </div>
         </form>
+
     </div>
 </body>
 </html>

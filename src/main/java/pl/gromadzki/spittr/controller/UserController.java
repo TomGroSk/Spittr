@@ -3,18 +3,31 @@ package pl.gromadzki.spittr.controller;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.gromadzki.spittr.model.User;
 import pl.gromadzki.spittr.repository.UserRepository;
+import pl.gromadzki.spittr.validator.UserValidator;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
+    private UserValidator userValidator;
     private UserRepository userRepository;
 
-    public UserController(UserRepository userRepository) {
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.setValidator(userValidator);
+    }
+
+    public UserController(UserRepository userRepository, UserValidator userValidator) {
         this.userRepository = userRepository;
+        this.userValidator = userValidator;
     }
 
     @GetMapping("/register")
@@ -24,7 +37,10 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute("newUser")User user){
+    public String postRegister(@Valid @ModelAttribute("newUser")User user, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
         String password = user.getPassword();
         user.setRole("USER");
         user.setPassword(new BCryptPasswordEncoder().encode(password));

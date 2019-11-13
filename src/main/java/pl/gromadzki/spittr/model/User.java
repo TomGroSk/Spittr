@@ -1,5 +1,7 @@
 package pl.gromadzki.spittr.model;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,12 +12,16 @@ public class User {
     @SequenceGenerator(name="user_gen")
     @Column(name = "USER_ID")
     private Long id;
-    @Column(name = "USER_NAME")
+    @Column(name = "USER_NAME", unique = true)
     private String username;
     @Column(name = "PASSWORD")
     private String password;
     @Column(name = "USER_ROLE")
     private String role;
+
+    @Transient
+    private String rePassword;
+
     public User() {
     }
 
@@ -55,6 +61,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getRePassword() {
+        return rePassword;
+    }
+
+    public void setRePassword(String rePassword) {
+        this.rePassword = rePassword;
     }
 
     @Override
