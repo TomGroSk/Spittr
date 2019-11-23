@@ -32,6 +32,5 @@ public class DemoData {
 
         userRepository.save(new User("user", new BCryptPasswordEncoder().encode("user"), "USER"));
         userRepository.save(new User("admin", new BCryptPasswordEncoder().encode("admin"), "ADMIN"));
-        //userRepository.findAll().forEach(System.out::println);
     }
 }

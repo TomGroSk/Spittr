@@ -30,4 +30,16 @@ public class SpittlesService {
         Integer randomId = Math.toIntExact((long) ((Math.random() * spittleRepository.count()) + 1));
         return spittleRepository.findById(randomId).orElse(null);
     }
+
+    public boolean deleteSpittle(int id){
+        if(id > spittleRepository.count() || id < 0){
+            return false;
+        }
+        Spittle spittle = spittleRepository.findById(id);
+        if(spittle != null){
+            spittleRepository.delete(spittle);
+            return true;
+        }
+        return false;
+    }
 }

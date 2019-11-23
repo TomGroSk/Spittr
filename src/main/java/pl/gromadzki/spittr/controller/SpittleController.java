@@ -46,4 +46,15 @@ public class SpittleController {
         model.addAttribute("randomSpittle", spittlesService.getRandomSpittle());
         return "random";
     }
+
+    @GetMapping(value = "/delete")
+    @ResponseBody
+    public String deleteSpittle(@RequestParam int id){
+        if(spittlesService.deleteSpittle(id)){
+            return id + " is no longer exist!";
+        }
+        else{
+            return "Failed to delete spittle with ID: "+ id;
+        }
+    }
 }

@@ -28,6 +28,7 @@ public class MyUserDetailsService implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException(username);
         }
+
         return new User(user.getUsername(), user.getPassword()
                 ,true
                 , true
@@ -35,6 +36,5 @@ public class MyUserDetailsService implements UserDetailsService {
                 , true,
                 Collections.singleton(new SimpleGrantedAuthority(user.getRole()))
                 );
-
     }
 }

@@ -43,7 +43,6 @@ public class Spittle {
     public Spittle(){
         this("", new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()), "username");
     }
-
     public Integer getId() {
         return id;
     }

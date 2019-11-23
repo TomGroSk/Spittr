@@ -25,8 +25,8 @@
         <h1 class="write-spittle">Write your spittle!</h1>
         <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post">
             <br>
-            <textarea minlength="1" maxlength="255" name="comment" form="usrform" wrap="soft"
-                      th:field="*{message}" id="message" required placeholder="Write your message!"></textarea>
+            <div><textarea minlength="1" maxlength="255" name="comment" form="usrform" wrap="soft"
+                      th:field="*{message}" required placeholder="Write your message!"></textarea></div>
             <br>
             <input type="submit" value="Send" />
         </form>
