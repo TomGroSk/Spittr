@@ -1,5 +1,8 @@
 package pl.gromadzki.spittr.service;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
@@ -15,29 +18,24 @@ public class SpittlesService {
         this.spittleRepository = spittleRepository;
     }
 
-    public List<Spittle> getLastSpittles(int counter){
-        List<Spittle> spittleList = new ArrayList<>();
-        int lastId = Math.toIntExact(spittleRepository.count());
-        while(counter>=0 && spittleRepository.existsById(lastId)){
-            spittleList.add(spittleRepository.findById(lastId));
-            lastId--;
-            counter--;
-        }
-        return spittleList;
+    public List<Spittle> getLastSpittles(){
+        return spittleRepository.findFirst3ByOrderByIdDesc();
     }
 
     public Spittle getRandomSpittle(){
-        Integer randomId = Math.toIntExact((long) ((Math.random() * spittleRepository.count()) + 1));
-        return spittleRepository.findById(randomId).orElse(null);
+        Integer randomId;
+        Spittle spittle = null;
+        while (spittle==null){
+            randomId = Math.toIntExact((long) ((Math.random() * spittleRepository.count()) + 1));
+            spittle = spittleRepository.findById(randomId).orElse(null);
+        }
+        return spittle;
     }
 
     public boolean deleteSpittle(int id){
-        if(id > spittleRepository.count() || id < 0){
-            return false;
-        }
         Spittle spittle = spittleRepository.findById(id);
         if(spittle != null){
-            spittleRepository.delete(spittle);
+            spittleRepository.deleteById(id);
             return true;
         }
         return false;

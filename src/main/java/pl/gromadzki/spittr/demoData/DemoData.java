@@ -30,7 +30,8 @@ public class DemoData {
         spittleRepository.save(new Spittle("Lorem ipsum 2", "01-10-19 19:32:11", "username"));
         spittleRepository.save(new Spittle("Lorem ipsum 3", simpleDateFormat.format(new Date()), "username"));
 
-        userRepository.save(new User("user", new BCryptPasswordEncoder().encode("user"), "USER"));
         userRepository.save(new User("admin", new BCryptPasswordEncoder().encode("admin"), "ADMIN"));
+        userRepository.save(new User("user", new BCryptPasswordEncoder().encode("user"), "USER"));
+
     }
 }

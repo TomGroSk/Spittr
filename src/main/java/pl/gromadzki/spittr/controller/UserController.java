@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.gromadzki.spittr.model.User;
 import pl.gromadzki.spittr.repository.UserRepository;
 import pl.gromadzki.spittr.validator.UserValidator;
@@ -46,5 +43,16 @@ public class UserController {
         user.setPassword(new BCryptPasswordEncoder().encode(password));
         userRepository.save(user);
         return "redirect:/";
+    }
+
+    @ResponseBody
+    @GetMapping("/update")
+    public String getUpdate(@RequestParam String username, @RequestParam String auth){
+        if(username.equals("admin")) return "You cannot change admin authorities";
+        User user = userRepository.findByUsername(username);
+        if(user==null) return "There is no user with this name";
+        user.setRole(auth);
+        userRepository.save(user);
+        return "Success";
     }
 }

@@ -24,7 +24,7 @@ public class SpittleController {
     @GetMapping
     public String spittles(Model model){
         model.addAttribute("spittle", new Spittle());
-        model.addAttribute("spittles", spittlesService.getLastSpittles(3));
+        model.addAttribute("spittles", spittlesService.getLastSpittles());
         return "spittle";
     }
 
@@ -47,14 +47,13 @@ public class SpittleController {
         return "random";
     }
 
-    @GetMapping(value = "/delete")
     @ResponseBody
-    public String deleteSpittle(@RequestParam int id){
-        if(spittlesService.deleteSpittle(id)){
-            return id + " is no longer exist!";
-        }
-        else{
-            return "Failed to delete spittle with ID: "+ id;
+    @DeleteMapping(value = "/delete/{id}")
+    public String deleteSpittle(@PathVariable("id") int spittleId){
+        if(spittlesService.deleteSpittle(spittleId)){
+            return spittleId + " is no longer exist!";
+        } else {
+            return "Failed to delete spittle with ID: " + spittleId;
         }
     }
 }
