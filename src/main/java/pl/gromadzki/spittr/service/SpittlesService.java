@@ -1,14 +1,14 @@
 package pl.gromadzki.spittr.service;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class SpittlesService {
@@ -40,4 +40,6 @@ public class SpittlesService {
         }
         return false;
     }
+
+
 }

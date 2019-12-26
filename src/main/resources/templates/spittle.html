@@ -23,18 +23,22 @@
 <div class="animation-background">
     <div class="dialog">
         <h1 class="write-spittle">Write your spittle!</h1>
-        <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post">
+        <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post" enctype="multipart/form-data">
             <br>
             <div><textarea minlength="1" maxlength="255" name="comment" form="usrform" wrap="soft"
                       th:field="*{message}" required placeholder="Write your message!"></textarea></div>
+            <input type="file" th:field="*{multipartFile}" class="file-input"/>
             <br>
             <input type="submit" value="Send" />
         </form>
-
+<!--     TODO        @@@@@@@                 NEED TO DO FRONT MORE FLEXIBLE               @@@@@@                  -->
         <h1 style="font-family:'Titan One',cursive;">Last spittles:</h1>
         <div class="display-container" th:each="spittle: ${spittles}">
             <div class="topleft"><span th:text="${spittle.username}">USER</span></div>
             <div class="topright"><span th:text="${spittle.time}">TIME</span></div>
+            <div th:if="${spittle.base64Image}!=null">
+                <img th:src="*{'data:image/png;base64,'+spittle.base64Image}" style="width:304px;height:228px" alt="" />
+            </div>
             <div class="middle"><h3 th:text="${spittle.message}">MESSAGE</h3></div>
         </div>
     </div>

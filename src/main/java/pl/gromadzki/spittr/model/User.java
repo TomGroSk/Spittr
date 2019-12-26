@@ -1,7 +1,5 @@
 package pl.gromadzki.spittr.model;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.*;
 
 @Entity
