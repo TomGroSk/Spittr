@@ -5,7 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.gromadzki.spittr.demoData.pojo.SpittleToJson;
+import pl.gromadzki.spittr.model.pojo.SpittleToJson;
 import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 import pl.gromadzki.spittr.service.SpittlesService;
