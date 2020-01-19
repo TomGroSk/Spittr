@@ -67,8 +67,11 @@ public class SpittleToJson {
         setMessageContent(spittle.getMessage());
         setTime(spittle.getTime());
         setUsername(spittle.getUsername());
-        if(spittle.getBase64Image()!=null){
+        if(!spittle.getBase64Image().equals("")){
             setHaveImage(true);
+        }
+        else {
+            setHaveImage(false);
         }
         return this;
     }

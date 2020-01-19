@@ -3,11 +3,9 @@ package pl.gromadzki.spittr.model;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.swing.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 
@@ -58,6 +56,7 @@ public class Spittle {
         this.message = message;
         this.time = time;
         this.multipartFile = null;
+        this.base64Image = "";
     }
     public Spittle(String message, String time, String username, MultipartFile multipartFile) {
         this.username = username;
@@ -65,6 +64,7 @@ public class Spittle {
         this.message = message;
         this.time = time;
         this.multipartFile = multipartFile;
+        this.base64Image = "";
     }
 
     //getters and setters
@@ -108,7 +108,6 @@ public class Spittle {
     public String getBase64Image() {
         return base64Image;
     }
-
     public void setBase64Image(String base64Image) {
         this.base64Image = base64Image;
     }
