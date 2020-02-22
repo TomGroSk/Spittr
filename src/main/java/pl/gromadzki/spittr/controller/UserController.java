@@ -45,6 +45,7 @@ public class UserController {
         return "redirect:/";
     }
 
+    //TODO do adminpanel
     @ResponseBody
     @GetMapping("/update")
     public String getUpdate(@RequestParam String username, @RequestParam String auth){

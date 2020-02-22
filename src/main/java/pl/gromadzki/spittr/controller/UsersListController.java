@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.gromadzki.spittr.repository.UserRepository;
 
-
+//TODO adminpanel
 @Controller
 public class UsersListController {
     private final UserRepository userRepository;

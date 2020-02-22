@@ -1,43 +1,21 @@
 package pl.gromadzki.spittr;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import pl.gromadzki.spittr.model.Spittle;
-import pl.gromadzki.spittr.model.User;
-import pl.gromadzki.spittr.repository.SpittleRepository;
-import pl.gromadzki.spittr.repository.UserRepository;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @SpringBootApplication
-public class SpittrApplication {
-
-    private final SpittleRepository spittleRepository;
-    private final UserRepository userRepository;
+public class SpittrApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(SpittrApplication.class, args);
     }
 
-    public SpittrApplication(SpittleRepository spittleRepository, UserRepository userRepository) {
-        this.spittleRepository = spittleRepository;
-        this.userRepository = userRepository;
-    }
 
-    @Bean
-    public CommandLineRunner demo() {
-        return (args) -> {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
-            spittleRepository.save(new Spittle("Lorem ipsum 1", "11-09-19 08:20:11", "username"));
-            spittleRepository.save(new Spittle("Lorem ipsum 2", "01-10-19 19:32:11", "username"));
-            spittleRepository.save(new Spittle("Lorem ipsum 3", simpleDateFormat.format(new Date()), "username"));
-
-            userRepository.save(new User("admin", new BCryptPasswordEncoder().encode("admin"), "ADMIN"));
-            userRepository.save(new User("user", new BCryptPasswordEncoder().encode("user"), "USER"));
-        };
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(SpittrApplication.class);
     }
 }

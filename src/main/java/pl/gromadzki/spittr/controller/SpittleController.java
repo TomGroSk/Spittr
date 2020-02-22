@@ -55,6 +55,7 @@ public class SpittleController {
         return "random";
     }
 
+    //TODO adminpanel
     @ResponseBody
     @DeleteMapping(value = "/delete/{id}")
     public String deleteSpittle(@PathVariable("id") int spittleId){

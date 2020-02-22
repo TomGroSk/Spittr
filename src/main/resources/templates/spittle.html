@@ -27,7 +27,7 @@
             <br>
             <div><textarea minlength="1" maxlength="255" name="comment" form="usrform" wrap="soft"
                       th:field="*{message}" required placeholder="Write your message!"></textarea></div>
-            <input type="file" th:field="*{multipartFile}" class="file-input"/>
+            <input type="file" th:field="*{multipartFile}" accept="image/*" class="file-input"/>
             <br>
             <input type="submit" value="Send" />
         </form>
