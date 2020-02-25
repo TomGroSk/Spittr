@@ -25,7 +25,7 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/register").permitAll()
                 .antMatchers("/spittle", "/spittle/random").hasAnyAuthority("ADMIN", "USER")
-                .antMatchers("/users", "/update", "/spittle/delete", "/spittle/api").hasAuthority("ADMIN")
+                .antMatchers( "/panel/**").hasAuthority("ADMIN")
                 .and()
                 .formLogin().permitAll()
                 .and()

@@ -14,8 +14,7 @@
         <a class="header-home" href="/">HOME</a>
     </div>
     <div class="header-right">
-        <a sec:authorize="hasAuthority('ADMIN')" href="/users">USERS</a>
-        <a sec:authorize="hasAuthority('ADMIN')" href="/spittle/api">SPITTLES</a>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/panel">PANEL</a>
         <a sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
         <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
     </div>

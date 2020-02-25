@@ -14,16 +14,15 @@
         <a sec:authorize="isAuthenticated()" href="/spittle">SPITTLE</a>
     </div>
     <div class="header-right">
-        <a sec:authorize="hasAuthority('ADMIN')" href="/users">USERS</a>
-        <a sec:authorize="hasAuthority('ADMIN')" href="/spittle/api">SPITTLES</a>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/panel">PANEL</a>
         <a sec:authorize="!isAuthenticated()" href="/login">LOGIN</a>
         <a sec:authorize="!isAuthenticated()" href="/register">REGISTER</a>
         <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
     </div>
 </div>
 <div class="text-hover">
-    <h1>This is main page!</h1>
-    <h5>(there is nothing here)</h5>
+    <h1>There is nothing here!</h1>
+    <h5>(Please register and log in)</h5>
 </div>
 </body>
 </html>

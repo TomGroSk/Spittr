@@ -5,13 +5,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.gromadzki.spittr.model.pojo.SpittleToJson;
 import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 import pl.gromadzki.spittr.service.SpittlesService;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
@@ -24,7 +21,7 @@ public class SpittleController {
     public SpittleController(SpittlesService spittlesService, SpittleRepository spittleRepository) {
         this.spittlesService = spittlesService;
         this.spittleRepository = spittleRepository;
-}
+    }
     @GetMapping
     public String spittles(Model model){
         model.addAttribute("spittle", new Spittle());
@@ -39,30 +36,9 @@ public class SpittleController {
         return "redirect:/spittle";
     }
 
-    @ResponseBody
-    @GetMapping(value = "/api")
-    public List<SpittleToJson> getAllSpittles(){
-        List<SpittleToJson> spittleToJsons = new ArrayList<>();
-        for(Spittle s: spittleRepository.findAll()){
-            spittleToJsons.add(new SpittleToJson().convertSpittleToJson(s));
-        }
-        return spittleToJsons;
-    }
-
     @GetMapping(value = "/random")
     public String getRandomSpittle(Model model){
         model.addAttribute("randomSpittle", spittlesService.getRandomSpittle());
         return "random";
-    }
-
-    //TODO adminpanel
-    @ResponseBody
-    @DeleteMapping(value = "/delete/{id}")
-    public String deleteSpittle(@PathVariable("id") int spittleId){
-        if(spittlesService.deleteSpittle(spittleId)){
-            return spittleId + " is no longer exist!";
-        } else {
-            return "Failed to delete spittle with ID: " + spittleId;
-        }
     }
 }

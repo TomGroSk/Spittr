@@ -44,16 +44,4 @@ public class UserController {
         userRepository.save(user);
         return "redirect:/";
     }
-
-    //TODO do adminpanel
-    @ResponseBody
-    @GetMapping("/update")
-    public String getUpdate(@RequestParam String username, @RequestParam String auth){
-        if(username.equals("admin")) return "You cannot change admin authorities";
-        User user = userRepository.findByUsername(username);
-        if(user==null) return "There is no user with this name";
-        user.setRole(auth);
-        userRepository.save(user);
-        return "Success";
-    }
 }

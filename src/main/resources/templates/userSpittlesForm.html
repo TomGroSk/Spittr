@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spittle - User Spittles</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div style="text-align: center">
+        <form action="/panel/spittle/showUserSpittle" method="post">
+            <h3>Please enter username: </h3>
+            <input type="text" name="username"/>
+            <input type="submit" value="Send" />
+        </form>
+    </div>
+    <div>
+        <table class="table table-striped table-bordered">
+            <tr th:action="@{/panel/spittle/showUserSpittle}" th:each="user: ${usersList}">
+                <td th:text="${user.username}">User</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

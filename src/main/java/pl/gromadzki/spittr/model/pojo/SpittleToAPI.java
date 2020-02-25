@@ -3,17 +3,17 @@ package pl.gromadzki.spittr.model.pojo;
 import org.springframework.context.annotation.Bean;
 import pl.gromadzki.spittr.model.Spittle;
 
-public class SpittleToJson {
+public class SpittleToAPI {
     private Integer id;
     private String messageContent;
     private String time;
     private String username;
     private Boolean haveImage = false;
 
-    public SpittleToJson() {
+    public SpittleToAPI() {
     }
 
-    public SpittleToJson(Integer id, String messageContent, String time, String username, Boolean haveImage) {
+    public SpittleToAPI(Integer id, String messageContent, String time, String username, Boolean haveImage) {
         this.id = id;
         this.messageContent = messageContent;
         this.time = time;
@@ -62,7 +62,7 @@ public class SpittleToJson {
     }
 
     @Bean
-    public SpittleToJson convertSpittleToJson(Spittle spittle){
+    public SpittleToAPI convertSpittleToJson(Spittle spittle){
         setId(spittle.getId());
         setMessageContent(spittle.getMessage());
         setTime(spittle.getTime());
