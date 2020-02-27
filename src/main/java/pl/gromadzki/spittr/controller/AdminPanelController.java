@@ -7,8 +7,10 @@ import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.model.User;
 import pl.gromadzki.spittr.model.pojo.SpittleToAPI;
 import pl.gromadzki.spittr.repository.SpittleRepository;
+import pl.gromadzki.spittr.repository.TopSpittlersRepository;
 import pl.gromadzki.spittr.repository.UserRepository;
 import pl.gromadzki.spittr.service.AdminPanelService;
+import pl.gromadzki.spittr.service.TopSpittlersService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +20,18 @@ import java.util.List;
 public class AdminPanelController {
     private final AdminPanelService adminPanelService;
     private final SpittleRepository spittleRepository;
+    private final TopSpittlersRepository topSpittlersRepository;
+    private final TopSpittlersService topSpittlersService;
     private final UserRepository userRepository;
 
     public AdminPanelController(SpittleRepository spittleRepository, UserRepository userRepository,
-                                AdminPanelService adminPanelService) {
+                                AdminPanelService adminPanelService, TopSpittlersRepository topSpittlersRepository,
+                                TopSpittlersService topSpittlersService) {
         this.spittleRepository = spittleRepository;
         this.userRepository = userRepository;
         this.adminPanelService = adminPanelService;
+        this.topSpittlersRepository = topSpittlersRepository;
+        this.topSpittlersService = topSpittlersService;
     }
 
     @GetMapping
@@ -82,6 +89,7 @@ public class AdminPanelController {
             int i = Integer.parseInt(id);
             Spittle spittle = spittleRepository.findById(i);
             if(spittle!=null){
+                topSpittlersService.decreaseCountListOfSpittlers(spittle);
                 spittleRepository.delete(spittle);
                 return "Deleted.";
             }
@@ -120,6 +128,7 @@ public class AdminPanelController {
                 return "You cannot delete admin!";
             }
             adminPanelService.deleteSpittlesFromDeletedUser(user.getUsername());
+            topSpittlersRepository.delete(topSpittlersRepository.findByName(user.getUsername()));
             userRepository.delete(user);
             return "Deleted.";
         }

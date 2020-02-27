@@ -4,8 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class SpittlesService {
@@ -33,6 +32,4 @@ public class SpittlesService {
         }
         return false;
     }
-
-
 }

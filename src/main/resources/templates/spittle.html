@@ -30,7 +30,7 @@
             <br>
             <input type="submit" value="Send" />
         </form>
-        <h1 style="font-family:'Titan One',cursive;">Last spittles:</h1>
+        <h1 style="font-family:'Titan One',cursive;">Last 3 spittles:</h1>
         <div class="display-container" th:each="spittle: ${spittles}">
             <div class="topleft"><span th:text="${spittle.username}">USER</span></div>
             <div class="topright"><span th:text="${spittle.time}">TIME</span></div>

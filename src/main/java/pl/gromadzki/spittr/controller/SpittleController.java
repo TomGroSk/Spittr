@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.gromadzki.spittr.model.Spittle;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 import pl.gromadzki.spittr.service.SpittlesService;
-
+import pl.gromadzki.spittr.service.TopSpittlersService;
 
 
 @Controller
@@ -16,11 +16,14 @@ import pl.gromadzki.spittr.service.SpittlesService;
 public class SpittleController {
     private SpittlesService spittlesService;
     private SpittleRepository spittleRepository;
+    private TopSpittlersService topSpittlersService;
 
     @Autowired
-    public SpittleController(SpittlesService spittlesService, SpittleRepository spittleRepository) {
+    public SpittleController(SpittlesService spittlesService, SpittleRepository spittleRepository
+            , TopSpittlersService topSpittlersService) {
         this.spittlesService = spittlesService;
         this.spittleRepository = spittleRepository;
+        this.topSpittlersService = topSpittlersService;
     }
     @GetMapping
     public String spittles(Model model){
@@ -33,6 +36,7 @@ public class SpittleController {
     public String messageSpittle(@ModelAttribute("spittle")Spittle spittle, Authentication authentication){
         spittle.setUsername(authentication.getName());
         spittleRepository.save(spittle);
+        topSpittlersService.increaseCountListOfSpittlers(spittle);
         return "redirect:/spittle";
     }
 
