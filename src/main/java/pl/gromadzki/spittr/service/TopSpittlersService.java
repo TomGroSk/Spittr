@@ -6,6 +6,7 @@ import pl.gromadzki.spittr.model.TopSpittlers;
 import pl.gromadzki.spittr.repository.SpittleRepository;
 import pl.gromadzki.spittr.repository.TopSpittlersRepository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,5 +55,9 @@ public class TopSpittlersService {
         }
 
         topSpittlersRepository.save(topSpittlers);
+    }
+
+    public List<TopSpittlers> getTenTopSpittlers(){
+        return topSpittlersRepository.findTop10ByOrderByValueDesc();
     }
 }

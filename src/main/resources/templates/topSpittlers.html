@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Spittlers</title>
+    <link href="../static/css/topSpittlers.css" th:href="@{/css/topSpittlers.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="background">
+    <div class="header">
+        <div class="header-left">
+            <a class="header-home" href="/">HOME</a>
+            <a sec:authorize="isAuthenticated()" href="/spittle">SPITTLE</a>
+        </div>
+        <div class="header-right">
+            <a sec:authorize="hasAuthority('ADMIN')" href="/panel">PANEL</a>
+            <a sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
+            <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
+        </div>
+    </div>
+    <div class="display-container">
+        <div class="topleft"><span>USER</span></div>
+        <div class="topright"><span>SPITTLES</span></div>
+    </div>
+    <div class="display-container" th:each="spittler: ${topSpittlers}">
+        <div class="topleft"><span th:text="${spittler.name}">USER</span></div>
+        <div class="topright"><span th:text="${spittler.value}">VALUE</span></div>
+    </div>
+</div>
+</body>
+</html>

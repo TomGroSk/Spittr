@@ -58,7 +58,7 @@ public class AdminPanelController {
     public String showUserSpittle(Model model){
         model.addAttribute("username", "");
         model.addAttribute("usersList", userRepository.findAll());
-        return "userSpittlesForm";
+        return "userSpittles";
     }
 
     @PostMapping(value = "/spittle/showUserSpittle")
@@ -79,7 +79,7 @@ public class AdminPanelController {
     public String deleteSpittleForm(Model model){
         model.addAttribute("spittleId", "");
         model.addAttribute("spittleList", spittleRepository.findAll());
-        return "deleteSpittlePanel";
+        return "deleteSpittle";
     }
 
     @ResponseBody
@@ -116,7 +116,7 @@ public class AdminPanelController {
     public String deleteUser(Model model){
         model.addAttribute("username", "");
         model.addAttribute("userList", userRepository.findAll());
-        return "deleteUserPanel";
+        return "deleteUser";
     }
 
     @ResponseBody
@@ -147,7 +147,8 @@ public class AdminPanelController {
 
     @ResponseBody
     @PostMapping(value = "/user/changeUserRole")
-    public String changeUserRolePost(@ModelAttribute("username") String username, @ModelAttribute("userRole") String userRole){
+    public String changeUserRolePost(@ModelAttribute("username") String username
+                                    , @ModelAttribute("userRole") String userRole){
         if(username.equals("admin")){
             return "You cannot change admin role!";
         }

@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+    text-align: center;
+    height: 1000px;
+}
+.background{
+    background: linear-gradient(to bottom, black, grey);
+    height: 1000px;
+    background-size: cover;
+}
+.header {
+    padding: 10px 30px;
+    background: transparent;
+    word-spacing: 30px;
+    font-weight: 900;
+    position: relative;
+    overflow: auto;
+    color: black;
+    font-size: 20px;
+    z-index: 2;
+}
+.header-left{
+    float: left;
+}
+.header-right{
+    float: right;
+}
+.header a {
+    float: left;
+    color: white;
+    text-shadow: 2px 2px rebeccapurple;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 30px;
+}
+
+.header a:hover {
+    background-color: #ddd;
+    text-weight: bold;
+    text-shadow: none;
+    text-decoration-style: wavy;
+    color: black;
+    transition: all 0.5s ease-in;
+}
+@media screen and (max-width: 500px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+}
+
+.display-container{
+    margin: auto;
+    border-spacing: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 40%;
+    word-break: break-word;
+    font-weight: bold;
+    font-size: 15px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 30px;
+    color: white;
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(10px, auto);
+}
+
+.topleft{
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+.topright{
+    grid-column: 3 / 4;
+    grid-row: 1;
+}
+.middle{
+    grid-column: 1 / 4;
+    grid-row: 2;
+}
