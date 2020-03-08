@@ -21,21 +21,21 @@ public class AdminPanelService {
         this.userRepository = userRepository;
     }
 
-    public List<SpittleToAPI> getAllUserSpittles(String username){
+    public List<SpittleToAPI> getAllUserSpittles(String username) {
         List<Spittle> spittlesList = spittleRepository.findAll();
         List<SpittleToAPI> spittleToAPIS = new ArrayList<>();
 
         spittlesList.removeIf(s -> !username.equals(s.getUsername()));
-        for(Spittle s: spittlesList){
+        for (Spittle s : spittlesList) {
             spittleToAPIS.add(new SpittleToAPI().convertSpittleToJson(s));
         }
 
         return spittleToAPIS;
     }
 
-    public void deleteSpittlesFromDeletedUser(String username){
-        for(Spittle s: spittleRepository.findAll()){
-            if(s.getUsername().equals(username)){
+    public void deleteSpittlesFromDeletedUser(String username) {
+        for (Spittle s : spittleRepository.findAll()) {
+            if (s.getUsername().equals(username)) {
                 spittleRepository.delete(s);
             }
         }

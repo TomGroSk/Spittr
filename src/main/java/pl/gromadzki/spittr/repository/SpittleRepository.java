@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface SpittleRepository extends JpaRepository<Spittle, Integer> {
     Spittle findById(int count);
+
     List<Spittle> findFirst3ByOrderByIdDesc();
 }

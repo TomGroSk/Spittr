@@ -17,8 +17,8 @@ public class TopSpittlersController {
     }
 
     @GetMapping
-    public String topList(Model model){
-        model.addAttribute("topSpittlers",topSpittlersService.getTenTopSpittlers());
+    public String topList(Model model) {
+        model.addAttribute("topSpittlers", topSpittlersService.getTenTopSpittlers());
         return "topSpittlers";
     }
 

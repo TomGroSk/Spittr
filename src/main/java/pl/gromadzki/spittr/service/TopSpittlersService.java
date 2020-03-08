@@ -22,11 +22,11 @@ public class TopSpittlersService {
         this.spittleRepository = spittleRepository;
     }
 
-    public Map<String, Integer> getListCountOfSpittlers(){
+    public Map<String, Integer> getListCountOfSpittlers() {
         Map<String, Integer> mapOfSpittlers = new HashMap<>();
         List<Spittle> spittleList = spittleRepository.findAll();
 
-        for(Spittle s: spittleList){
+        for (Spittle s : spittleList) {
             mapOfSpittlers.putIfAbsent(s.getUsername(), 0);
             mapOfSpittlers.computeIfPresent(s.getUsername(), (key, val) -> val + 1);
         }
@@ -34,30 +34,28 @@ public class TopSpittlersService {
         return mapOfSpittlers;
     }
 
-    public void increaseCountListOfSpittlers(Spittle spittle){
+    public void increaseCountListOfSpittlers(Spittle spittle) {
         TopSpittlers topSpittlers = topSpittlersRepository.findByName(spittle.getUsername());
-        if(topSpittlers == null){
+        if (topSpittlers == null) {
             topSpittlersRepository.save(new TopSpittlers(spittle.getUsername(), 1));
-        }
-        else{
-            topSpittlers.setValue((topSpittlers.getValue()+1));
+        } else {
+            topSpittlers.setValue((topSpittlers.getValue() + 1));
             topSpittlersRepository.save(topSpittlers);
         }
     }
 
-    public void decreaseCountListOfSpittlers(Spittle spittle){
+    public void decreaseCountListOfSpittlers(Spittle spittle) {
         TopSpittlers topSpittlers = topSpittlersRepository.findByName(spittle.getUsername());
-        if(topSpittlers.getValue()-1 <= 0){
+        if (topSpittlers.getValue() - 1 <= 0) {
             topSpittlersRepository.delete(topSpittlers);
-        }
-        else{
-            topSpittlers.setValue((topSpittlers.getValue()-1));
+        } else {
+            topSpittlers.setValue((topSpittlers.getValue() - 1));
         }
 
         topSpittlersRepository.save(topSpittlers);
     }
 
-    public List<TopSpittlers> getTenTopSpittlers(){
+    public List<TopSpittlers> getTenTopSpittlers() {
         return topSpittlersRepository.findTop10ByOrderByValueDesc();
     }
 }

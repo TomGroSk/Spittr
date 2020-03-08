@@ -9,20 +9,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-    <div style="text-align: center">
-        <form action="/panel/spittle/showUserSpittle" method="post">
-            <h3>Please enter username: </h3>
-            <input type="text" name="username"/>
-            <input type="submit" value="Send" />
-        </form>
-    </div>
-    <div>
-        <table class="table table-striped table-bordered">
-            <tr th:action="@{/panel/spittle/showUserSpittle}" th:each="user: ${usersList}">
-                <td th:text="${user.username}">User</td>
-            </tr>
-        </table>
-    </div>
+<div style="text-align: center">
+    <form action="/panel/spittle/showUserSpittle" method="post">
+        <h3>Please enter username: </h3>
+        <input type="text" name="username"/>
+        <input type="submit" value="Send"/>
+    </form>
+</div>
+<div>
+    <table class="table table-striped table-bordered">
+        <tr th:action="@{/panel/spittle/showUserSpittle}" th:each="user: ${usersList}">
+            <td th:text="${user.username}">User</td>
+        </tr>
+    </table>
+</div>
 
 </body>
 </html>

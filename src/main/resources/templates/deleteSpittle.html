@@ -7,24 +7,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-    <div style="text-align: center">
-        <form action="/panel/spittle/deleteSpittlePanel" method="post">
-            <h3>Please enter spittle ID: </h3>
-            <input type="text" name="spittleId"/>
-            <input type="submit" value="Send" />
-        </form>
-    </div>
+<div style="text-align: center">
+    <form action="/panel/spittle/deleteSpittlePanel" method="post">
+        <h3>Please enter spittle ID: </h3>
+        <input type="text" name="spittleId"/>
+        <input type="submit" value="Send"/>
+    </form>
+</div>
 
 
-    <div>
-        <table class="table table-striped table-bordered">
-            <tr th:action="@{/panel/spittle/deleteSpittlePanel}" th:each="spittle: ${spittleList}">
-                <td th:text="${spittle.id}">ID</td>
-                <td th:text="${spittle.username}">User</td>
-                <td th:text="${spittle.message}">Message</td>
-                <td th:text="${spittle.time}">Date</td>
-            </tr>
-        </table>
-    </div>
+<div>
+    <table class="table table-striped table-bordered">
+        <tr th:action="@{/panel/spittle/deleteSpittlePanel}" th:each="spittle: ${spittleList}">
+            <td th:text="${spittle.id}">ID</td>
+            <td th:text="${spittle.username}">User</td>
+            <td th:text="${spittle.message}">Message</td>
+            <td th:text="${spittle.time}">Date</td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

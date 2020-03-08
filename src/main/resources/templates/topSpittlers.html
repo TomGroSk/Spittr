@@ -2,32 +2,70 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Top Spittlers</title>
-    <link href="../static/css/topSpittlers.css" th:href="@{/css/topSpittlers.css}" rel="stylesheet" />
+    <link href="../static/css/topSpittlers.css" th:href="@{/css/topSpittlers.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
+
 <body>
 <div class="background">
     <div class="header">
-        <div class="header-left">
-            <a class="header-home" href="/">HOME</a>
-            <a sec:authorize="isAuthenticated()" href="/spittle">SPITTLE</a>
-        </div>
-        <div class="header-right">
-            <a sec:authorize="hasAuthority('ADMIN')" href="/panel">PANEL</a>
-            <a sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
-            <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
+        <div class="top-panel col-md-12 col-xs-12">
+            <a class="header-link pull-left home" href="/">HOME</a>
+
+            <a sec:authorize="isAuthenticated()" class="header-link pull-left display-none-xs"
+               href="/spittle">SPITTLE</a>
+            <a class="header-link pull-right display-none-xs" sec:authorize="isAuthenticated()"
+               href="/logout">LOGOUT</a>
+            <a class="header-link pull-right display-none-xs" sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
+            <a class="header-link pull-right display-none-xs" sec:authorize="hasAuthority('ADMIN')"
+               href="/panel">PANEL</a>
+
+            <div id="mySidebar" class="display-none-lg sidebar">
+                <a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()">&times;</a>
+                <a sec:authorize="isAuthenticated()" class="header-link pull-right" href="/spittle">SPITTLE</a>
+                <a class="header-link pull-right" sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
+                <a class="header-link pull-right" sec:authorize="isAuthenticated()" href="/spittlers">RANKING</a>
+                <a class="header-link pull-right" sec:authorize="hasAuthority('ADMIN')" href="/panel">PANEL</a>
+            </div>
+
+            <div id="open-menu" class="display-none-lg pull-right">
+                <span class="openbtn" onclick="openNav()">&#9776;</span>
+            </div>
         </div>
     </div>
-    <div class="display-container">
-        <div class="topleft"><span>USER</span></div>
-        <div class="topright"><span>SPITTLES</span></div>
-    </div>
-    <div class="display-container" th:each="spittler: ${topSpittlers}">
-        <div class="topleft"><span th:text="${spittler.name}">USER</span></div>
-        <div class="topright"><span th:text="${spittler.value}">VALUE</span></div>
+
+    <div class="write-spittle col-md-12 col-xs-12 m-t-100">Top spittlers:</div>
+
+    <div class="col-md-12 col-xs-12 m-t-20">
+        <div class="display-container" th:each="spittler: ${topSpittlers}">
+            <div class="col-xs-12 col-md-12">
+                <div class="pull-left col-xs-6 col-md-6">
+                    <span th:text="${spittler.name}">USER</span>
+                </div>
+
+                <div class="pull-right col-xs-6 col-md-6">
+                    <span th:text="${spittler.value}">TIME123123123123</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
 </html>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+    }
+</script>

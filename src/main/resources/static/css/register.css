@@ -1,78 +1,155 @@
-*{
+body {
     margin: 0;
     padding: 0;
-
+    background: #DDDDDD !important;
 }
 
-body{
+.horizonal-padding-30 {
+    padding-right: 30px !important;
+    padding-left: 30px !important;
+}
+
+.form-signin-heading {
+    margin-top: 100px;
+    margin-bottom: 20px;
     text-align: center;
-    height: 1000px;
-}
-.background{
-    background: linear-gradient(to bottom, black, grey);
-    height: 1000px;
-    background-size: cover;
-}
-.header {
-    padding: 10px 30px;
-    background: transparent;
-    word-spacing: 30px;
-    font-weight: 900;
-    position: relative;
-    overflow: auto;
-    color: black;
-    font-size: 20px;
-    z-index: 2;
-}
-.header-left{
-    float: left;
-}
-.header-right{
-    float: right;
-}
-.header a {
-    float: left;
-    color: white;
-    text-shadow: 2px 2px rebeccapurple;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 30px;
+    font-size: 45px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.header a:hover {
-    background-color: #ddd;
-    text-weight: bold;
-    text-shadow: none;
-    text-decoration-style: wavy;
-    color: black;
-    transition: all 0.5s ease-in;
 }
-@media screen and (max-width: 500px) {
-    .header a {
-        float: none;
+
+.form-signin {
+    text-align: center;
+}
+
+.register-button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    width: 200px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.register-field {
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+@media screen and (max-width: 499px) {
+    .header {
+        width: 100%;
+        margin: 0;
+        height: 50px;
+        background-color: #001f3f;
+        position: fixed;
+        overflow: auto;
+        z-index: 1;
+    }
+
+    .home {
+        margin-left: 20px;
+        margin-top: 15px !important;
+        margin-right: 20px;
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 20px;
+        border-radius: 30px;
+        text-decoration: none !important;
+    }
+
+    .home :hover {
+        color: #F7CAC9;
+        transition: all 0.25s ease-in;
+    }
+
+    .display-none-xs {
+        display: none;
+    }
+
+    .sidebar {
+        height: 70px;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: #001f3f;
+        overflow-x: hidden;
+        text-align: center;
+    }
+
+    .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 22px;
+        color: white;
         display: block;
-        text-align: left;
+        transition: 0.3s;
     }
 
-    .header-right {
-        float: none;
+    .header-link {
+        margin-top: 10px;
+    }
+
+    .sidebar .closebtn {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 10px !important;
+        font-size: 36px;
+    }
+
+    .openbtn {
+        margin-top: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+    }
+
+    #open-menu {
+        margin-top: 10px;
+    }
+
+    .register-field {
+        width: 100% !important;
     }
 }
-.form-signin-heading{
-    color: white;
-    padding: 100px;
-    font-weight: 900;
-    text-decoration-style: wavy;
-    font-style: italic;
-    font-size: 50px;
-}
-.form-signin{
-    padding: 100px
-}
-.form-group{
-    margin: 20px;
-        size: 20px;
+
+@media screen and (min-width: 500px) {
+    .display-none-lg {
+        display: none;
+    }
+
+    .header {
+        margin: 0;
+        height: 50px;
+        background-color: #001f3f;
+        position: relative;
+        overflow: auto;
+        z-index: 2;
+    }
+
+    .header-link {
+        margin-left: 20px;
+        margin-top: 15px;
+        margin-right: 20px;
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 20px;
+        border-radius: 30px;
+        text-decoration: none !important;
+    }
+
+    .header-link:hover {
+        color: #F7CAC9;
+        transition: all 0.25s ease-in;
+    }
 }

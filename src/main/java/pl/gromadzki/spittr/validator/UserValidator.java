@@ -24,11 +24,11 @@ public class UserValidator implements Validator {
         ValidationUtils.rejectIfEmpty(err, "password", "user.password.empty");
 
         User user = (User) obj;
-        if(!user.getPassword().equals(user.getRePassword())){ //if passwords are the same
+        if (!user.getPassword().equals(user.getRePassword())) { //if passwords are the same
             err.rejectValue("rePassword", "user.rePassword.notEqual");
         }
-        for(User u: userRepository.findAll()){ //if username already exist
-            if(u.getUsername().equals(user.getUsername())){
+        for (User u : userRepository.findAll()) { //if username already exist
+            if (u.getUsername().equals(user.getUsername())) {
                 err.rejectValue("username", "user.username.exist");
             }
         }

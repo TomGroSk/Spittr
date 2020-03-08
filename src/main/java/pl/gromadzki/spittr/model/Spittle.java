@@ -14,7 +14,7 @@ import java.util.Date;
 public class Spittle {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SPITTLE_GEN")
-    @SequenceGenerator(name="SPITTLE_GEN")
+    @SequenceGenerator(name = "SPITTLE_GEN")
     @Column(name = "SPITTLE_ID")
     private Integer id;
 
@@ -44,12 +44,14 @@ public class Spittle {
     }
 
     //constructors
-    public Spittle(){
+    public Spittle() {
         this("", new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()), "username");
     }
-    public Spittle(String message){
+
+    public Spittle(String message) {
         this(message, new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()), "username");
     }
+
     public Spittle(String message, String time, String username) {
         this.username = username;
         this.id = null;
@@ -58,6 +60,7 @@ public class Spittle {
         this.multipartFile = null;
         this.base64Image = "";
     }
+
     public Spittle(String message, String time, String username, MultipartFile multipartFile) {
         this.username = username;
         this.id = null;
@@ -71,30 +74,39 @@ public class Spittle {
     public Integer getId() {
         return id;
     }
+
     public String getMessage() {
         return message;
     }
+
     public String getTime() {
         return time;
     }
-    public void setMessage(String message){
+
+    public void setMessage(String message) {
         this.message = message;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public void setTime(String time) {
         this.time = time;
     }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     public MultipartFile getMultipartFile() {
         return multipartFile;
     }
+
     public void setMultipartFile(MultipartFile file) {
         this.multipartFile = file;
         try {
@@ -105,9 +117,11 @@ public class Spittle {
             e.printStackTrace();
         }
     }
+
     public String getBase64Image() {
         return base64Image;
     }
+
     public void setBase64Image(String base64Image) {
         this.base64Image = base64Image;
     }

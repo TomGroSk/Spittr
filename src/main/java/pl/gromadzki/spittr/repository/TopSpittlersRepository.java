@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface TopSpittlersRepository extends JpaRepository<TopSpittlers, Integer> {
     TopSpittlers findByName(String name);
+
     List<TopSpittlers> findTop10ByOrderByValueDesc();
 }

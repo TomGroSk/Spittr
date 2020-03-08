@@ -35,48 +35,48 @@ public class AdminPanelController {
     }
 
     @GetMapping
-    public String viewAdminPanel(){
+    public String viewAdminPanel() {
         return "adminPanel";
     }
 
     @GetMapping(value = "/spittle")
-    public String spittlesControlPanel(){
+    public String spittlesControlPanel() {
         return "spittlesControlPanel";
     }
 
     @ResponseBody
     @GetMapping(value = "/spittle/showAll")
-    public List<SpittleToAPI> showAllSpittles(){
+    public List<SpittleToAPI> showAllSpittles() {
         List<SpittleToAPI> spittleToJsons = new ArrayList<>();
-        for(Spittle s: spittleRepository.findAll()){
+        for (Spittle s : spittleRepository.findAll()) {
             spittleToJsons.add(new SpittleToAPI().convertSpittleToJson(s));
         }
         return spittleToJsons;
     }
 
     @GetMapping(value = "/spittle/showUserSpittle")
-    public String showUserSpittle(Model model){
+    public String showUserSpittle(Model model) {
         model.addAttribute("username", "");
         model.addAttribute("usersList", userRepository.findAll());
         return "userSpittles";
     }
 
     @PostMapping(value = "/spittle/showUserSpittle")
-    public String showUserSpittlePostForm(@ModelAttribute("username") String user){
+    public String showUserSpittlePostForm(@ModelAttribute("username") String user) {
         return "redirect:/panel/spittle/showUserSpittle/" + user;
     }
 
     @ResponseBody
     @GetMapping(value = "/spittle/showUserSpittle/{user}")
-    public List<SpittleToAPI> showUserSpittleGet(@PathVariable("user") String user){
-        if(userRepository.findByUsername(user) == null){
+    public List<SpittleToAPI> showUserSpittleGet(@PathVariable("user") String user) {
+        if (userRepository.findByUsername(user) == null) {
             return null;
         }
         return adminPanelService.getAllUserSpittles(user);
     }
 
     @GetMapping(value = "/spittle/deleteSpittlePanel")
-    public String deleteSpittleForm(Model model){
+    public String deleteSpittleForm(Model model) {
         model.addAttribute("spittleId", "");
         model.addAttribute("spittleList", spittleRepository.findAll());
         return "deleteSpittle";
@@ -84,36 +84,35 @@ public class AdminPanelController {
 
     @ResponseBody
     @PostMapping(value = "/spittle/deleteSpittlePanel")
-    public String deleteSpittle(@ModelAttribute("spittleId") String id){
-        try{
+    public String deleteSpittle(@ModelAttribute("spittleId") String id) {
+        try {
             int i = Integer.parseInt(id);
             Spittle spittle = spittleRepository.findById(i);
-            if(spittle!=null){
+            if (spittle != null) {
                 topSpittlersService.decreaseCountListOfSpittlers(spittle);
                 spittleRepository.delete(spittle);
                 return "Deleted.";
-            }
-            else{
+            } else {
                 return "Something gone wrong!";
             }
-        }catch (NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             return "Pick number!";
         }
     }
 
     @GetMapping(value = "/user")    //change role
-    public String usersControlPanel(){
+    public String usersControlPanel() {
         return "usersControlPanel";
     }
 
     @ResponseBody
     @GetMapping(value = "/user/showUsers")
-    public List<User> showUsers(){
+    public List<User> showUsers() {
         return userRepository.findAll();
     }
 
     @GetMapping(value = "/user/deleteUser")
-    public String deleteUser(Model model){
+    public String deleteUser(Model model) {
         model.addAttribute("username", "");
         model.addAttribute("userList", userRepository.findAll());
         return "deleteUser";
@@ -121,24 +120,23 @@ public class AdminPanelController {
 
     @ResponseBody
     @PostMapping(value = "/user/deleteUser")
-    public String postDelete(@ModelAttribute("username") String username){
+    public String postDelete(@ModelAttribute("username") String username) {
         User user = userRepository.findByUsername(username);
-        if(user!=null){
-            if(user.getRole().equals("ADMIN")){
+        if (user != null) {
+            if (user.getRole().equals("ADMIN")) {
                 return "You cannot delete admin!";
             }
             adminPanelService.deleteSpittlesFromDeletedUser(user.getUsername());
             topSpittlersRepository.delete(topSpittlersRepository.findByName(user.getUsername()));
             userRepository.delete(user);
             return "Deleted.";
-        }
-        else{
+        } else {
             return "Something gone wrong!";
         }
     }
 
     @GetMapping(value = "/user/changeUserRole")
-    public String changeUserRole(Model model){
+    public String changeUserRole(Model model) {
         model.addAttribute("username", "");
         model.addAttribute("userRole", "");
         model.addAttribute("userList", userRepository.findAll());
@@ -148,17 +146,16 @@ public class AdminPanelController {
     @ResponseBody
     @PostMapping(value = "/user/changeUserRole")
     public String changeUserRolePost(@ModelAttribute("username") String username
-                                    , @ModelAttribute("userRole") String userRole){
-        if(username.equals("admin")){
+            , @ModelAttribute("userRole") String userRole) {
+        if (username.equals("admin")) {
             return "You cannot change admin role!";
         }
         User user = userRepository.findByUsername(username);
-        if(user!=null){
+        if (user != null) {
             user.setRole(userRole);
             userRepository.save(user);
             return "Role has been changed.";
-        }
-        else{
+        } else {
             return "Something gone wrong!";
         }
     }

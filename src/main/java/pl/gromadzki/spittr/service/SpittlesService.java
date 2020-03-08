@@ -14,19 +14,19 @@ public class SpittlesService {
         this.spittleRepository = spittleRepository;
     }
 
-    public List<Spittle> getLastSpittles(){
+    public List<Spittle> getLastSpittles() {
         return spittleRepository.findFirst3ByOrderByIdDesc();
     }
 
-    public Spittle getRandomSpittle(){
+    public Spittle getRandomSpittle() {
         List<Spittle> spittleList = spittleRepository.findAll();
         Random rand = new Random();
         return spittleList.get(rand.nextInt(spittleList.size()));
     }
 
-    public boolean deleteSpittle(int id){
+    public boolean deleteSpittle(int id) {
         Spittle spittle = spittleRepository.findById(id);
-        if(spittle != null){
+        if (spittle != null) {
             spittleRepository.deleteById(id);
             return true;
         }

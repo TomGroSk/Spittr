@@ -28,13 +28,13 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegistration(Model model){
+    public String getRegistration(Model model) {
         model.addAttribute("newUser", new User());
         return "register";
     }
 
     @PostMapping("/register")
-    public String postRegister(@Valid @ModelAttribute("newUser")User user, BindingResult bindingResult){
+    public String postRegister(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "register";
         }

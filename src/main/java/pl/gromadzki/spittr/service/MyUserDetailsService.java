@@ -19,22 +19,22 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(final String username)
             throws UsernameNotFoundException {
 
         pl.gromadzki.spittr.model.User user = userRepository.findByUsername(username);
-        if(user == null){
+        if (user == null) {
             throw new UsernameNotFoundException(username);
         }
 
         return new User(user.getUsername(), user.getPassword()
-                ,true
+                , true
                 , true
                 , true
                 , true,
                 Collections.singleton(new SimpleGrantedAuthority(user.getRole()))
-                );
+        );
     }
 }

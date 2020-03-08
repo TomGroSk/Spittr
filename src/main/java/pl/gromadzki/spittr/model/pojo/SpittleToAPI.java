@@ -62,15 +62,14 @@ public class SpittleToAPI {
     }
 
     @Bean
-    public SpittleToAPI convertSpittleToJson(Spittle spittle){
+    public SpittleToAPI convertSpittleToJson(Spittle spittle) {
         setId(spittle.getId());
         setMessageContent(spittle.getMessage());
         setTime(spittle.getTime());
         setUsername(spittle.getUsername());
-        if(!spittle.getBase64Image().equals("")){
+        if (!spittle.getBase64Image().equals("")) {
             setHaveImage(true);
-        }
-        else {
+        } else {
             setHaveImage(false);
         }
         return this;

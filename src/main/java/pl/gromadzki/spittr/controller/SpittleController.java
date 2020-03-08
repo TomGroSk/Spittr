@@ -25,15 +25,16 @@ public class SpittleController {
         this.spittleRepository = spittleRepository;
         this.topSpittlersService = topSpittlersService;
     }
+
     @GetMapping
-    public String spittles(Model model){
+    public String spittles(Model model) {
         model.addAttribute("spittle", new Spittle());
         model.addAttribute("spittles", spittlesService.getLastSpittles());
         return "spittle";
     }
 
     @PostMapping
-    public String messageSpittle(@ModelAttribute("spittle")Spittle spittle, Authentication authentication){
+    public String messageSpittle(@ModelAttribute("spittle") Spittle spittle, Authentication authentication) {
         spittle.setUsername(authentication.getName());
         spittleRepository.save(spittle);
         topSpittlersService.increaseCountListOfSpittlers(spittle);
@@ -41,7 +42,7 @@ public class SpittleController {
     }
 
     @GetMapping(value = "/random")
-    public String getRandomSpittle(Model model){
+    public String getRandomSpittle(Model model) {
         model.addAttribute("randomSpittle", spittlesService.getRandomSpittle());
         return "random";
     }

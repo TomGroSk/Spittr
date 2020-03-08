@@ -1,58 +1,119 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Spittles</title>
-    <link href="../static/css/spittle.css" th:href="@{/css/spittle.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="../static/css/spittle.css" th:href="@{/css/spittle.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
+
 <body>
 <div class="header">
+    <div class="top-panel col-md-12 col-xs-12">
+        <a class="header-link home pull-left" href="/">HOME</a>
+        <a class="header-link pull-right display-none-xs" sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
+        <a class="header-link pull-right display-none-xs" sec:authorize="isAuthenticated()"
+           href="/spittlers">RANKING</a>
+        <a class="header-link pull-right display-none-xs" sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
+        <a class="header-link pull-right display-none-xs" sec:authorize="hasAuthority('ADMIN')" href="/panel">PANEL</a>
 
-    <div class="header-left">
-        <a class="header-home" href="/">HOME</a>
-    </div>
-    <div class="header-right">
-        <a sec:authorize="hasAuthority('ADMIN')" href="/panel">PANEL</a>
-        <a sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
-        <a sec:authorize="isAuthenticated()" href="/spittlers">RANKING</a>
-        <a sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
-    </div>
-</div>
-<div class="animation-background">
-    <div class="dialog">
-        <h1 class="write-spittle">Write your spittle!</h1>
-        <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post" enctype="multipart/form-data">
-            <br>
-            <div><textarea minlength="1" maxlength="255" name="comment" form="usrform" wrap="soft"
-                      th:field="*{message}" required placeholder="Write your message!"></textarea></div>
-            <input type="file" th:field="*{multipartFile}" accept="image/*" class="file-input"/>
-            <br>
-            <input type="submit" value="Send" />
-        </form>
-        <h1 style="font-family:'Titan One',cursive;">Last 3 spittles:</h1>
-        <div class="display-container" th:each="spittle: ${spittles}">
-            <div class="topleft"><span th:text="${spittle.username}">USER</span></div>
-            <div class="topright"><span th:text="${spittle.time}">TIME</span></div>
-            <div th:if="${spittle.base64Image}!=null">
-                <img th:src="*{'data:image/png;base64,'+spittle.base64Image}" style="width:304px;height:228px" alt="" />
-            </div>
-            <div class="middle"><h3 th:text="${spittle.message}">MESSAGE</h3></div>
+        <div id="mySidebar" class="display-none-lg sidebar">
+            <a href="javascript:void(0)" class="closebtn pull-right" onclick="closeNav()">&times;</a>
+            <a class="header-link pull-right" sec:authorize="isAuthenticated()" href="/logout">LOGOUT</a>
+            <a class="header-link pull-right" sec:authorize="isAuthenticated()" href="/spittlers">RANKING</a>
+            <a class="header-link pull-right" sec:authorize="isAuthenticated()" href="/spittle/random">RANDOM</a>
+            <a class="header-link pull-right" sec:authorize="hasAuthority('ADMIN')" href="/panel">PANEL</a>
+        </div>
+
+        <div id="open-menu" class="display-none-lg pull-right">
+            <span class="openbtn" onclick="openNav()">&#9776;</span>
         </div>
     </div>
-    <ul class="box-area">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
 </div>
 
+
+<div class="col-md-12 col-xs-12 animation-background">
+    <div class="write-spittle col-md-12 col-xs-12">Write your spittle!</div>
+
+    <div class="spittle-text-area col-md-12 col-xs-12">
+        <form th:action="@{/spittle}" th:object="${spittle}" id="usrform" method="post" enctype="multipart/form-data">
+
+                        <textarea class="spittle-text" minlength="1" maxlength="255" name="comment" form="usrform"
+                                  wrap="soft"
+                                  th:field="*{message}" required placeholder="Write your message!"></textarea>
+
+            <br/>
+
+            <label for="file-inp" class="btn btn-default btn-file file-input">
+                Choose your file
+            </label>
+
+            <input id="file-inp" type="file" th:field="*{multipartFile}" accept="image/*" style="display: none;">
+
+
+            <br/>
+            <input type="submit" value="Send"/>
+        </form>
+    </div>
+
+    <div class="last-spittle col-md-12 col-xs-12">Last 3 spittles:</div>
+
+    <div class="col-md-12 col-xs-12">
+        <div class="display-container" th:each="spittle: ${spittles}">
+            <div class="col-xs-12 col-md-12  margin-bottom-20">
+                <div class="pull-left col-xs-6 col-md-6">
+                    <span th:text="${spittle.username}">USER</span>
+                </div>
+
+                <div class="pull-right col-xs-6 col-md-6">
+                    <span th:text="${spittle.time}">TIME</span>
+                </div>
+            </div>
+
+            <h3 class="horizonal-padding-30 margin-bottom-20" th:text="${spittle.message}">MESSAGE</h3>
+
+            <div th:if="${spittle.base64Image}!=null">
+                <img th:src="*{'data:image/png;base64,'+spittle.base64Image}" class="spittle-image"
+                     style="width:304px;height:228px" alt=""/>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
+<script>
+    $(document).on('change', ':file', function () {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+
+        input.trigger('fileselect', [numFiles, label]);
+    });
+
+    $(document).ready(function () {
+        $(':file').on('fileselect', function (event, numFiles, label) {
+            if (label.length !== 0) {
+                $(".file-input").text(label);
+            } else {
+                $(".file-input").text("Chose your file");
+            }
+        });
+    });
+
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+    }
+
+</script>
