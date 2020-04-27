@@ -10,12 +10,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
-public class SecurityConfigure extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private BCryptPasswordEncoder passwordEncoder;
     private UserDetailsService userDetailsService;
 
-    public SecurityConfigure(BCryptPasswordEncoder passwordEncoder,
-                             @Qualifier("userDetailsService") UserDetailsService userDetailsService) {
+    public SecurityConfiguration(BCryptPasswordEncoder passwordEncoder,
+                                 @Qualifier("userDetailsService") UserDetailsService userDetailsService) {
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
     }
@@ -24,8 +24,9 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/", "/register").permitAll()
-                .antMatchers("/spittle/**", "/spittlers").hasAnyAuthority("ADMIN", "USER")
-                .antMatchers("/panel/**").hasAuthority("ADMIN")
+                .antMatchers("/spittle/**", "/spittlers").authenticated()
+                .antMatchers("/panel/**", "/swagger-ui.html",
+                        "/swagger-resources/**", "/v2/**", "/actuator").hasAuthority("ADMIN")
                 .and()
                 .formLogin().permitAll()
                 .and()
